@@ -1,0 +1,9 @@
+--- # This is encrypted yml file
+ - name: This is the file for encrypted format
+   hosts: all
+   become: yes
+   tasks:
+    - name: Uninstall the httpd in all nodes
+      yum:
+        name: httpd
+        state: removed
