@@ -1,0 +1,39 @@
+--- # This is the playbook for install tomcat in redhat
+ - name: Install the tomcat in all nodes
+   hosts: all
+   become: true
+   tasks:
+    - name: install java in redHat
+      yum:
+       name: java
+       state: installed
+      when: ansible_os_family == "redHat"
+
+    - name: install java default-jdk in ubuntu
+      apt:
+       name: default-jdk
+       state: present
+      when: ansible_os_family == "Debian"
+
+    - name : Download apache.tar.gz from the url need to plac under /opt
+      get_url:
+        url: https://mirror.cogentco.com/pub/apache/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz
+        dest: /opt
+
+    - name: Extract Tomcat package which is downloaded at location /opt
+      unarchive: 
+       src: /opt/apache-tomcat-8.5.66.tar.gz
+       dest: /opt  
+       remote_src: yes
+
+    - name: Give Executable Full  Permissions for startup.sh
+      file: 
+       path: /opt/apache-tomcat-8.5.66/bin/startup.sh 
+       mode: 0777  
+
+    - name: Start Tomcat Service Need To run Shell Script
+      shell: nohup ./startup.sh
+      args:
+       chdir: /opt/apache-tomcat-8.5.66/bin 
+        
+
