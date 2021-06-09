@@ -15,12 +15,12 @@
        state: present
       when: ansible_os_family == "Debian"
 
-    - name : Download apache.tar.gz from the url need to plac under /opt
+    - name : Download apache.tar.gz from the url need to plac under opt
       get_url:
         url: https://mirror.cogentco.com/pub/apache/tomcat/tomcat-8/v8.5.66/bin/apache-tomcat-8.5.66.tar.gz
         dest: /opt
 
-    - name: Extract Tomcat package which is downloaded at location /opt
+    - name: Extract Tomcat package which is downloaded at location opt
       unarchive: 
        src: /opt/apache-tomcat-8.5.66.tar.gz
        dest: /opt  
