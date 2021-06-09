@@ -1,0 +1,15 @@
+--- # This is the playbook for install httpd based on when condition
+
+- name: This is for install git,tree,docker ata time 
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install tree,git and docker in all nodes
+      yum:
+       name: ['tree','git','docker']
+       state: present
+      when: ansible_os_family == "RedHat" 
+
+
+

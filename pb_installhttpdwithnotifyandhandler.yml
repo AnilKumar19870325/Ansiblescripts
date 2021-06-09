@@ -1,0 +1,17 @@
+--- # This is the playbook for install httpd service and start the service with handlers and notify
+
+- name: Playbook started for target sectiom
+  hosts: webservers
+  become: true
+  tasks:
+   - name: Install httpd in all nodes
+     yum:
+      name: httpd
+      state: installed
+     notify: started httpd service
+   
+  handlers:
+   - name: started httpd service
+     service:
+      name: httpd
+      state: started

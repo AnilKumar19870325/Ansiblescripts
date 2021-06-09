@@ -1,0 +1,15 @@
+--- # This playbook is for creating user with variablename
+
+- name: This is target section
+  hosts: webservers
+  become: true
+
+  
+  vars: 
+    username: chandanakondle
+
+  tasks:
+   - name: This task is for creating user with variablename {{username}}
+     user:
+          name: "{{username}}"        
+

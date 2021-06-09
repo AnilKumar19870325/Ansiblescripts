@@ -1,0 +1,13 @@
+--- # This play book is create the user from another yml file variables
+
+- name: This is the creating user from another file variables
+  hosts: all
+  become: true
+
+  vars_files:
+   - usernamesvariable.yml
+
+  tasks:
+   - name: tasks started for creating user from another variable file {{username}}       
+     user:
+      name: "{{username}}"

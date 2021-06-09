@@ -1,0 +1,11 @@
+--- #This is code for creating file in all nodes
+- name: This playBook create file in all nodes 
+  hosts: webservers
+  become: true
+  tasks:
+   - name: Creating a file
+     file:
+      path: /home/ansiadmin/file1createdfromserver
+      state: touch      
+
+

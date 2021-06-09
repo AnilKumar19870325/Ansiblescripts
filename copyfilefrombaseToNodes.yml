@@ -1,0 +1,11 @@
+--- # Copy files from base(server) to nodes
+
+- name : Copy files from base machine to the nodes
+  hosts: all
+  tasks:
+   - name: Tasks for copy file from base machine to nodes using playbook
+     copy:
+       src: /home/ansiadmin/ymlscripts/anil.txt
+       dest: /home/ansiadmin 
+       mode: 0600
+       owner: ansiadmin
